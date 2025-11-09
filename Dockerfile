@@ -9,6 +9,9 @@ COPY mvnw .
 COPY .mvn .mvn
 COPY pom.xml .
 
+# ✅ FIX: Give execute permission to mvnw
+RUN chmod +x mvnw
+
 # Download dependencies (to cache)
 RUN ./mvnw dependency:go-offline -B
 
@@ -27,7 +30,7 @@ WORKDIR /app
 # Copy the built JAR file from the builder stage
 COPY --from=builder /app/target/*.jar app.jar
 
-# Expose the port Render will use
+# Expose the port Render uses
 EXPOSE 8080
 
 # Run the Spring Boot JAR
