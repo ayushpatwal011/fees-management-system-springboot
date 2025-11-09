@@ -30,10 +30,9 @@ public class SecurityConfig {
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration config = new CorsConfiguration();
         config.setAllowedOrigins(List.of(
-                "https://fee-management-system-frontend-hnnn9fx1u-ayushpatwal.vercel.app",
                 "https://fee-management-system-frontend-357p.vercel.app",
-                "https://fee-ms.netlify.app",
-                "http://localhost:5173"
+                "http://localhost:5173",
+                "https://fee-ms.netlify.app"
         ));
         config.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
         config.setAllowedHeaders(List.of("*"));
