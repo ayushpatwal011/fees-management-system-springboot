@@ -1,4 +1,3 @@
-
 package com.example.feemanagement.config;
 
 import org.springframework.context.annotation.Bean;
@@ -17,18 +16,28 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
-                .csrf(csrf -> csrf.disable()) // Disable CSRF for testing
+                // ✅ Enable CORS using the bean below
+                .cors(cors -> cors.configurationSource(corsConfigurationSource()))
+                
+                // Disable CSRF for testing and APIs
+                .csrf(csrf -> csrf.disable())
+
+                // Permit all endpoints (adjust later if needed)
                 .authorizeHttpRequests(auth -> auth
-                        .anyRequest().permitAll() // Allow all endpoints
+                        .anyRequest().permitAll()
                 )
-                .httpBasic(httpBasic -> httpBasic.disable()) // Disable Basic Auth
-                .formLogin(form -> form.disable()); // Disable login form
+
+                // Disable default login forms
+                .httpBasic(httpBasic -> httpBasic.disable())
+                .formLogin(form -> form.disable());
+
         return http.build();
     }
 
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration config = new CorsConfiguration();
+
         config.setAllowedOrigins(List.of(
                 "https://fee-management-system-frontend-357p.vercel.app",
                 "http://localhost:5173",
