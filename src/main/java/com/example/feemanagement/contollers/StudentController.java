@@ -18,8 +18,8 @@ import java.util.stream.Collectors;
 @RestController
 @RequestMapping("/api/students")
 @RequiredArgsConstructor
+@CrossOrigin( origins = "http://localhost:5173")
 public class StudentController {
-    public final StudentRepository studentRepository;
     private final StudentService studentService;
 
 //    create student
