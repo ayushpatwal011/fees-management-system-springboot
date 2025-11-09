@@ -15,8 +15,7 @@ public class WebConfig {
             public void addCorsMappings(CorsRegistry registry) {
                 registry.addMapping("/**")
                         .allowedOrigins(
-                                "http://localhost:5173", // frontend local dev (Vite)
-                                "https://your-frontend.onrender.com" // Render frontend (later)
+                                "https://fee-management-system-frontend-357p.vercel.app"
                         )
                         .allowedMethods("*")
                         .allowedHeaders("*")
